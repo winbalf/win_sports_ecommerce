@@ -1,0 +1,8 @@
+Componentes:
+1. Todos los componentes son funciones
+
+2. Todos los componentes inician con mayusculas
+
+3. SIempre se retorna un unico elemento
+
+Javascript + XML = JSX
