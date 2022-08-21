@@ -13,14 +13,13 @@ const styles = {
 const Footer = () => {
     return (
         <footer className={estilos.contenedor_main}>
-            <h5 style={{backgroundColor: 'pink', width: '150px'}}>Edwin</h5>
+            {/* <h5 style={{backgroundColor: 'pink', width: '150px'}}>Edwin</h5>
             <p style={styles.parrafo}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, nam illum? Eius ad tempora aliquid hic explicabo vero est consectetur, adipisci amet inventore deleniti enim? Necessitatibus itaque odio non! Ea!
             </p>
             <p style={styles.contenedor}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, nam illum? Eius ad tempora aliquid hic explicabo vero est consectetur, adipisci amet inventore deleniti enim? Necessitatibus itaque odio non! Ea!
-            </p>
-            <Navbar/>
+            </p> */}
         </footer>
     );
 }

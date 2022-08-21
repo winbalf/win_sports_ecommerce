@@ -30,7 +30,16 @@ const App = () => {
     return (
       <>
         <Header/>
-        <Main/>
+        <Main 
+          test="Probando" 
+          fecha={22}
+          alumno={
+            {
+              nombre: 'Thomas',
+              curso: 'React'
+            }
+          } 
+        />
         <Footer/>
       </>
     )
