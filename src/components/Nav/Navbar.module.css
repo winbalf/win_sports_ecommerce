@@ -38,3 +38,7 @@
     color: white !important;
     /* background-color: white; */
   }
+
+  .primary{
+    color: red;
+  }

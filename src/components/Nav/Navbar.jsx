@@ -1,6 +1,7 @@
 import React from 'react';
 import CartWidget from './CartWidget';
 import estilos from './Navbar.module.css';
+import Button from '../Button/Button.jsx';
 
 const Navbar = () => {
   return (
@@ -20,6 +21,9 @@ const Navbar = () => {
                 </ul>          
             </nav>
         </div>
+        {/* <Button value='Log in'></Button> */}
+        <Button variant={'primary'} value='Log in'></Button>
+
         <div className={"col-xs-2 col-md-4 "}>
             <CartWidget />
         </div>

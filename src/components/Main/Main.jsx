@@ -1,19 +1,21 @@
 import React from 'react';
+import ItemCount from '../Counter/ItemCount';
 import './Main.css';
 
 const Main = (props) => {
   // console.log(props);
-  const comision = props.test;
-  const {test, fecha} = props;
+  // const comision = props.test;
+  // const {test, fecha} = props;
+
+  const onAdd = (params) => {
+    console.log(params);
+    alert('This is a numer: ' + params)
+  }
 
   return (
     <main className='contenedor_main'>
           <section>
-            {/* <h2>Bienvenidos!</h2>
-            <h3>{test}</h3>
-            <h3>{comision}</h3>
-            <h4>{props.fecha}</h4>
-            <h4>{props.alumno.nombre}</h4> */}
+           <ItemCount stock={10} initial={0} onAdd={onAdd}/>
           </section>
     </main>
   )
