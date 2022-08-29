@@ -8,15 +8,15 @@ const Main = (props) => {
   // const {test, fecha} = props;
 
   const onAdd = (params) => {
-    console.log(params);
+    // console.log(params);
     alert('This is a numer: ' + params)
   }
 
   return (
     <main className='contenedor_main'>
-          <section>
+          {/* <section>
            <ItemCount stock={10} initial={0} onAdd={onAdd}/>
-          </section>
+          </section> */}
     </main>
   )
 }
