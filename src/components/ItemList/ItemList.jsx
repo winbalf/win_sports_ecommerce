@@ -10,7 +10,7 @@ const ItemList = (props) => {
 
     
     return (
-        <div>
+        <div style={{display:'flex', flexWrap:'wrap'}}>
             {
                 items.map((item) => {
                     return (

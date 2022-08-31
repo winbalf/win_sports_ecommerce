@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from 'react';
+import ItemDetail from '../ItemDetail/ItemDetail'
 import {products} from '../../Mocks/products';
-import Item from '../Item/Item';
-import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = () => {
-    const [items, setItems] = useState([]);
+const ItemDetailContainer = () => {
+    const [item, setItem] = useState([]);
 
     useEffect(() => {
-        const getProducts = new Promise((res, rej) =>{
+        const getProduct = new Promise((res, rej) =>{
+            const product = products.find((producto) => producto.id === 2);
             setTimeout(() =>{
-                res(products);
-            }, 3000);
-        });
+                res(product);
+            }, 2000);
+        }, []);
 
-        getProducts
+        getProduct
             .then((data) => {
                 // console.log('then: ', data);
-                setItems(data);
+                setItem(data);
             })
             // .catch((error) => {
             //     console.log('catch: ', error);
@@ -24,19 +24,17 @@ const ItemListContainer = () => {
             // .finally(() => {
             //     console.log('Finally');
             // })
-    });        
+    });     
 
-    console.log('items: ', items.length);
-
-    return (
+  return (
         <div style={{display:'flex', flexWrap:'wrap'}}>
             {
-                (items.length>0) ?
-                    <ItemList items={items}/> :
+                (item) ?
+                    <ItemDetail product={item}/> :
                     'Loading...' 
             }
         </div>
-    )
+      )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer
