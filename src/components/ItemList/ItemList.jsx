@@ -5,8 +5,8 @@ const ItemList = (props) => {
 
     const items = props.items;
 
-    console.log('itemsss');
-    console.log(items);
+    // console.log('itemsss');
+    // console.log(items);
 
     
     return (
