@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
+import { CartContext } from '../Context/CartContext';
 import ItemCount from '../Counter/ItemCount';
 
 const ItemDetail = (props) => {
     const product = props.product;
+    const [quantity, setQuantity] = useState(0);
+    const { addToCart } = useContext(CartContext);
 
-    const onAdd = (params) => {
-        console.log(params);
-        if(Number(params)){
-            if(params> 0){
-                alert('Add to cart: ' + params + ' ' + product.title)
-            }else{
-                alert('Choose a product ');
-            }
+    const onAdd = (quantityItem) => {
+        setQuantity(quantityItem);
+        addToCart(product, quantityItem);
+        // if(Number(params)){
+        //     if(params> 0){
+        //         alert('Add to cart: ' + params + ' ' + product.title);
+        //         setQuantity(params);
+        //         console.log('quantity');
+        //         console.log(quantity);
+        //     }else{
+        //         alert('Choose a product ');
+        //     }
 
-        }else{
-            alert('Choose a product ');
-        }
+        // }else{
+        //     alert('Choose a product ');
+        // }
       }
 
     return (
@@ -26,8 +34,12 @@ const ItemDetail = (props) => {
             <h2>{product.title}</h2>
             <h3>{product.price}</h3>
             <h4 style={{width:'100%'}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus, quae? Omnis mollitia sapiente aliquid inventore, cupiditate dolorem blanditiis ex quidem placeat labore fugit repellat tempore adipisci praesentium reiciendis, animi qui?</h4>
-            <ItemCount stock={Number(product.stock)} initial={0} onAdd={onAdd}/>
-            {/* <ItemCount stock={10} initial={0} onAdd={onAdd}/> */}
+            {/* <ItemCount stock={Number(product.stock)} initial={0} onAdd={onAdd}/> */}
+            {quantity === 0 ? (
+                <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
+            ) : (
+                <Link to="/cart">Ir al carrito</Link>
+            )}
         </div>
     )
 }
