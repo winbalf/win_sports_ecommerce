@@ -6,7 +6,7 @@ import ItemCount from '../Counter/ItemCount';
 const ItemDetail = (props) => {
     const product = props.product;
     const [quantity, setQuantity] = useState(0);
-    const { addToCart } = useContext(CartContext);
+    const { addToCart, getProductQuantity } = useContext(CartContext);
 
     const onAdd = (quantityItem) => {
         setQuantity(quantityItem);
@@ -26,6 +26,9 @@ const ItemDetail = (props) => {
         // }
       }
 
+    const productQuantity = getProductQuantity(product.id);
+
+
     return (
         // <div id={product.id} style={{ flex:'1 25%'}}>
         <div id={product.id} style={{border: '1px solid black', borderRadius:'10px', marginLeft:'20px', marginTop:'20px', width:'400px'}}>
@@ -36,7 +39,7 @@ const ItemDetail = (props) => {
             <h4 style={{width:'100%'}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus, quae? Omnis mollitia sapiente aliquid inventore, cupiditate dolorem blanditiis ex quidem placeat labore fugit repellat tempore adipisci praesentium reiciendis, animi qui?</h4>
             {/* <ItemCount stock={Number(product.stock)} initial={0} onAdd={onAdd}/> */}
             {quantity === 0 ? (
-                <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
+                <ItemCount stock={product.stock} initial={productQuantity} onAdd={onAdd} />
             ) : (
                 <Link to="/cart">Ir al carrito</Link>
             )}
