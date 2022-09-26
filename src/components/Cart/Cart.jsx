@@ -1,12 +1,30 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../Context/CartContext';
-
+import Form from '../Form/Form';
+import {Link} from 'react-router-dom';
 
 const Cart = () => {
+  const [idCompra, setIdCompra] = useState('');
   const {cart, clearCart, deleteOne, totalPrice} = useContext(CartContext);
 
   const total = totalPrice();
+
+  const handleId = (id) => {
+    setIdCompra(id);
+  };
+
+  if (idCompra) {
+    return <h1>Gracias por comprar, tu id es: {idCompra}</h1>
+  }
+
+  if (cart.length === 0) {
+    return (
+      <h1>
+        Aun no hya products, puedes ir al <Link to='/'>Home</Link>{' '} 
+        para buscar algun producto
+      </h1>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
@@ -32,8 +50,14 @@ const Cart = () => {
             ))}
         <button onClick={clearCart}>Clear Cart</button>
         <h4>Total: ${total}</h4>
+        <Form
+          cart={cart}
+          total={total}
+          clearCart={clearCart}
+          handleId={handleId}
+        />
     </div>
   );
 };
 
-export default Cart
+export default Cart;

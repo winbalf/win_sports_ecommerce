@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
@@ -25,7 +25,7 @@ const CartProvider = ({ children }) => {
             if(prod.id === item.id){
                 const productUpdated ={
                     ...prod,
-                    cantidad: prod.cantidad + cantidad
+                    cantidad: cantidad
                 }
                 return productUpdated;
             }else{
@@ -67,10 +67,13 @@ const CartProvider = ({ children }) => {
 
     const getProductQuantity = (id) => {
         const product = cart.find((prod) => prod.id === id);
-        return product?.cantidad;
-        //optional chaining
+        return product?.cantidad;      
     };
-    
+ 
+    useEffect(() => {
+        totalQuantity();
+        // eslint-disable-next-line
+    }, [cart]);
 
     return (
         <CartContext.Provider 

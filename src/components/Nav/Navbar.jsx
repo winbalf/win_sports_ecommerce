@@ -1,10 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CartWidget from './CartWidget';
-import estilos from './Navbar.module.css';
 import Button from '../Button/Button.jsx';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import {db} from '../../firebaseConfig';
 
 const Navbar = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const collectionCat = collection(db, 'categories');
+
+        getDocs(collectionCat)
+        .then((res)=>{
+            const categorias =
+            res.docs.map((cat)=>{
+                return {
+                    id: cat.id,
+                    ...cat.data(),
+                }
+            })
+            setCategories(categorias);
+        })
+    }, []);
+
   return (
     <div className={'row estilos.vertical_align'}>
         <div className={"col-xs-10 col-md-8"}>
@@ -13,22 +32,14 @@ const Navbar = () => {
             </Link>
             <nav>
                 <ul>
-                    <li>
-                        {/* <a href="https://google.com">Productos</a> */}
-                        <Link to={'/category/shirt'}>Shirts</Link>
-                    </li>
-                    <li>
-                        {/* <a href="https://google.com">Nosotros</a> */}
-                        <Link to={'/category/pants'}>Pants</Link>
-                    </li>
-                    <li>
-                        {/* <a href="https://google.com">Contact</a> */}
-                        <Link to={'/category/little_boys'}>Little Boys</Link>
-                    </li>
+                    {categories.map((cat)=>(
+                        <li>
+                            <NavLink to={`/category/${cat.route}`}>{cat.name}</NavLink>
+                        </li>
+                    ))}
                 </ul>          
             </nav>
         </div>
-        {/* <Button value='Log in'></Button> */}
         <Button variant={'primary'} value='Log in'></Button>
 
         <div className={"col-xs-2 col-md-4 "}>
