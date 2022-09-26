@@ -6,13 +6,13 @@ import {db} from '../../firebaseConfig';
 
 const Form = ({cart, total, clearCart, handleId}) => {
     const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
+    const [telefono, setTelefono] = useState('');
     const [email, setEmail] = useState('');
     const [email2, setEmail2] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(nombre === '' || apellido === '' || email === '' || email2 === ''  ){
+        if(nombre === '' || telefono === '' || email === '' || email2 === ''  ){
             alert('Debe dilengenciar todos los campos del formulario');
         }else if(email !== email2){
             alert(`email ${email} debe ser igual al segundo email ${email2}`)
@@ -20,7 +20,7 @@ const Form = ({cart, total, clearCart, handleId}) => {
 
             const order = {
                 buyer: {
-                    nombre: nombre, apellido: apellido, email: email
+                    nombre: nombre, telefono: telefono, email: email
                 },
                 items: cart,
                 total: total,
@@ -44,8 +44,8 @@ const Form = ({cart, total, clearCart, handleId}) => {
         setNombre(event.target.value);
     }
 
-    const handleChangeLastName = (event) => {
-        setApellido(event.target.value);
+    const handleChangePhoneNumber = (event) => {
+        setTelefono(event.target.value);
     }
 
     const handleChangeEmail = (event) => {
@@ -67,10 +67,10 @@ const Form = ({cart, total, clearCart, handleId}) => {
                 onChange={handleChangeName}/>
             <input 
                 type="text" 
-                placeholder='Apellido...' 
-                name="apellido" 
-                value={apellido} 
-                onChange={handleChangeLastName} />
+                placeholder='Telefono...' 
+                name="telefono" 
+                value={telefono} 
+                onChange={handleChangePhoneNumber} />
             <input 
                 type="email" 
                 placeholder='EMail...' 
